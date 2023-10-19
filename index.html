@@ -1,0 +1,74 @@
+<style>
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+   .diet_form {
+        background: #eaf4ff;
+        padding: 10px 30px;
+    }
+    form dl dt {
+        width: 200px;
+        height: 40px;
+        padding: 10px 0;
+        line-height: 40px;
+        float: left;
+    }
+    form dl dd {
+        padding: 10px 0;
+        margin: 0;
+    }
+    .box {
+        box-sizing: border-box;
+        width: 150px !important;
+        height: 40px !important;
+        margin: 0 !important;
+        padding: 0 10px !important;
+    }
+    .calc-btn {
+        width: 80px;
+        height: 30px;
+        border: 1px solid #333;
+    }
+    .calc-btn:hover {
+        cursor: pointer;
+    }
+    </style>
+    <form class="diet_form">
+        <dl>
+            <dt>元の値段は？：</dt>
+            <dd><input type="number" class="box" name="price"></dd>
+            <dt>何％OFF？ ：</dt>
+            <dd><input type="number" class="box" name="percent"></dd>
+            <dt>何割引？：</dt>
+            <dd><input type="number" class="box" name="discount"></dd>
+
+            <p><input type="button" class="calc-btn" onclick="calc(price.value, percent.value,discount.value);" value="計算"></p>
+           
+            <dt>払う金額(％)：</dt>
+            <dd><input id="pay1" class="box" type="text" readonly=""></dd>
+            <dt>安くなった金額(％)：</dt>
+            <dd><input id="cheap1" class="box" type="text" readonly=""></dd>
+            <dt>払う金額(割引)：</dt>
+            <dd><input id="pay2" class="box" type="text" readonly=""></dd>
+            <dt>安くなった金額(割引)：</dt>
+            <dd><input id="cheap2" class="box" type="text" readonly=""></dd>
+            <dt>税込み価格：</dt>
+            <dd><input id="pay3" class="box" type="text" readonly=""></dd>
+            <dt>税抜き価格：</dt>
+            <dd><input id="cheap4" class="box" type="text" readonly=""></dd>
+            
+        </dl>
+    </form>
+    <script>
+        function calc(price,percent,discount) {
+            const pay1_value = document.getElementById('pay1').value = Math.round(price-(price * (percent/100))) ;
+            const cheap1_value = document.getElementById('cheap1').value = Math.round(price * (percent/100));
+            const pay2_value = document.getElementById('pay2').value = Math.round(price-(price * (discount/10))) ;
+            const cheap2_value = document.getElementById('cheap2').value = Math.round(price * (discount/10));
+            const pay3_value = document.getElementById('pay3').value = Math.round(price * 1.1) ;
+            const pay4_value = document.getElementById('cheap4').value = Math.round(price * 0.9);
+        }
+    </script>
